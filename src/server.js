@@ -12,7 +12,7 @@ app.post("/chat", async (req, res) => {
         const userMessage = req.body.message;
 
         const response = await axios.post(
-            "https://api/openai.com/v1/chat/completions",
+            "https://api.openai.com/v1/chat/completions",
             {
                 model: "gpt-4o-mini",
                 messages: [
