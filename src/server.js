@@ -7,9 +7,20 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
+const USE_MOCK = true;
+
 app.post("/chat", async (req, res) => {
     try {
         const userMessage = req.body.message;
+
+        // 2. The "Hybrid" Logic Gate
+        if (USE_MOCK) {
+            console.log("--- Running in MOCK MODE (Free) ---");
+
+            return res.json({
+                reply: `[MOCK] You said: "${userMessage}". This is a mock response and purpose is to save the API credits.`
+            });
+        }
 
         const response = await axios.post(
             "https://api.openai.com/v1/chat/completions",
